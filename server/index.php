@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-require("./config.php");
+require("./config/config.php");
 
 
 $clientId = $spotify_config['client_id'];
@@ -25,8 +25,8 @@ if($_SERVER['QUERY_STRING'] != "") {
             $res = $client->request('POST', "https://accounts.spotify.com/api/token?grant_type=authorization_code&code=$returnedAuthorizedCode&redirect_uri=$redirectURL&client_id=$clientId&client_secret=$clientSecret", [
                 'headers' => [
                     'Content-Type' => 'application/x-www-form-urlencoded'
-                    ]
-                ]);
+                ]
+            ]);
                 
             $response = json_decode($res->getBody("access_token"), true);
             $responseStatusCode = $res->getStatusCode();
