@@ -17,7 +17,7 @@ phpfpm:
     ports:
         - "9000:9000"
     volumes:
-        - ./src:/usr/share/nginx/html
+        - ./server:/usr/share/nginx/html
 
 
 mysql:

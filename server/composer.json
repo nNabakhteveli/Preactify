@@ -1,0 +1,13 @@
+{
+    "name": "nika/preactify",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Nika Nabakhteveli",
+            "email": "nabakhtevelin@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}
