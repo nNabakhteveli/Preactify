@@ -16,3 +16,6 @@ $res = $client->request('GET', 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw4
 ]);
 
 echo $res->getBody();
+
+
+// insert into tokens (access_token, refresh_access_token, token_type) values ("test", "tset", "asdd");

@@ -1,17 +1,16 @@
 <?php
 
 require 'vendor/autoload.php';
-require("./config/config.php");
+require "./config/config.php";
 
 
 $clientId = $spotify_config['client_id'];
 $clientSecret = $spotify_config['client_secret'];
-$redirectURL = 'http://127.0.0.1/';
+$redirectURL = 'http://localhost/preactify/server/index.php';
 
 $url = "https://accounts.spotify.com/authorize?client_id=$clientId&response_type=code&redirect_uri=$redirectURL";
 
-
-if($_SERVER['REQUEST_URI'] == '/' && !isset($_COOKIE["access_token"])) header("Location: $url");
+if($_SERVER['REQUEST_URI'] == '/preactify/server/index.php' && !isset($_COOKIE["access_token"])) header("Location: $url");
 
 
 if($_SERVER['QUERY_STRING'] != "") {
