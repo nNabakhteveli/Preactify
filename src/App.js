@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Swal from 'sweetalert2'
 import parseUrl from 'parse-url';
-
 
 
 function successMessage() {
@@ -36,16 +36,17 @@ const TwoStepLogin = ({ isLoggedinWithSpotify }) => {
         <label>Finish setting up your account </label>
         <form>
           <div className="form-group">
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username" />
+            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username" required />
           </div>
 
           <div className="form-group">
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter Password" />
+            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter Password" required />
           </div>
+
+          <a href="">
+            <button type='submit' className="btn btn-success">Proceed</button>
+          </a>
         </form>
-        <a href="">
-          <button className="btn btn-success" onClick={() => successMessage()}>Proceed</button>
-        </a>
       </div>
     );
   }
@@ -61,7 +62,11 @@ function App() {
   }, []);
 
   return (
-    <TwoStepLogin isLoggedinWithSpotify={hasQueryString} />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<TwoStepLogin isLoggedinWithSpotify={hasQueryString} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
