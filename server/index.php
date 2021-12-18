@@ -2,6 +2,7 @@
 
 require 'vendor/autoload.php';
 require "./config/config.php";
+require './cors.php';
 
 
 $clientId = $spotify_config['client_id'];
@@ -14,6 +15,7 @@ if($_SERVER['REQUEST_URI'] == '/preactify/server/index.php' && !isset($_COOKIE["
 
 
 if($_SERVER['QUERY_STRING'] != "") {
+    setcookie('query_success_login', $_SERVER['QUERY_STRING']);
     $queryString = parse_url($_SERVER["REQUEST_URI"]);
     $returnedAuthorizedCode = str_replace("code=", "", $queryString['query']);
 
@@ -34,11 +36,16 @@ if($_SERVER['QUERY_STRING'] != "") {
             setcookie("token_type", $response["token_type"]);
             setcookie("expires_in", $response["expires_in"]);
             setcookie("refresh_token", $response["refresh_token"]);
+
+            $a = $response["token_type"];
+            $b = $response["access_token"];
+            
+            setcookie('tokenToFetch', "$a $b"); 
         } 
-        header("Location: $redirectURL");
+        header("Location: http://localhost:3000/?spotify_login_success=true");
     } else {
         echo "Something failed during authorization...";
     }
 } else {
-    echo "Successful authorization!";
+    echo "Login success";
 }
