@@ -23,4 +23,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-
+## Every redirect_uri should be registered on the Spotify dashboard app, otherwise it won't work
