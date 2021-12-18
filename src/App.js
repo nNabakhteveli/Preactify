@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Swal from 'sweetalert2'
 import parseUrl from 'parse-url';
+import axios from 'axios';
 
+
+const Second = () => <h1>ZD Mgels!</h1>;
 
 function successMessage() {
   const Toast = Swal.mixin({
@@ -34,16 +37,16 @@ const TwoStepLogin = ({ isLoggedinWithSpotify }) => {
     return(
       <div className="loginPopup login-step-two">
         <label>Finish setting up your account </label>
-        <form>
+        <form action='http://localhost/preactify/server/api/registerUser.php' method='POST'>
           <div className="form-group">
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username" required />
+            <input name='username' type="text" className="form-control" id="nameInput" placeholder="Enter Username" required />
           </div>
 
           <div className="form-group">
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter Password" required />
+            <input name='password' type="password" className="form-control" id="passwordInput" placeholder="Enter Password" required />
           </div>
 
-          <a href="">
+          <a href="http://localhost:3000/dashboard">
             <button type='submit' className="btn btn-success">Proceed</button>
           </a>
         </form>
@@ -65,6 +68,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<TwoStepLogin isLoggedinWithSpotify={hasQueryString} />} />
+        <Route path='/dashboard' element={<Second />} />
       </Routes>
     </BrowserRouter>
   );

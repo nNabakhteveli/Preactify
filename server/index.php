@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-require "./config/config.php";
+$spotify_config = require "./config/config.php";
 require './cors.php';
 
 
