@@ -2,6 +2,8 @@
 
 require "../cors.php";
 
+header('Content-Type: application/json');
+
 
 $host = "localhost";
 $db = "user_info";
@@ -17,10 +19,10 @@ $options = array(
 $currentUserId = $_COOKIE['uniqueID'];
 
 try {
-    $pdo = new PDO($dsn, $username, $password, $options);
-    $query = $pdo->query("SELECT * from `users` WHERE id = '$currentUserId'");
+    $pdo = new PDO($dsn, $username, $password);
+    $query = $pdo->query("SELECT * FROM `users`;");
     $data = $query->fetchAll();
-    
+
     echo json_encode($data);
 
 } catch(PDOException $error) {

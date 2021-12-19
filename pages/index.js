@@ -40,14 +40,11 @@ const TwoStepLogin = ({ isLoggedinWithSpotify }) => {
 
 function App() {
   const [hasQueryString, setHasQueryString] = useState(false);
-  const [fullSignup, setFullSignup] = useState(false);
-
   
   useEffect(() => {
     const currentPageUrl = document.baseURI, parsedCurrentPageUrl = parseUrl(currentPageUrl);
     if(parsedCurrentPageUrl.search !== "") setHasQueryString(true);
 
-    // if(localStorage.getItem("isLoggedIn") !== "false") setFullSignup(true);
   }, []);
 
   

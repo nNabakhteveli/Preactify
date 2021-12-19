@@ -1,0 +1,11 @@
+.playlistsDiv {
+    border: 1px solid black;
+    width: max-content;
+    overflow-y: auto;
+    float: left;
+    height: min-content;
+    margin-top: 50px;
+}
+li {
+    padding: 5px;
+}

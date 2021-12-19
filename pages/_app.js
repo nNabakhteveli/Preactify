@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/globals.css'
+import '../styles/globals.css';
+import '../styles/profile.css';
 import '../styles/style.css';
 
 function MyApp({ Component, pageProps }) {

@@ -42,4 +42,4 @@ try {
 }
 
 // Relocate user to React app after successful login
-header("Location: http://localhost:3000/dashboard");
+header("Location: http://localhost:3000/dashboard/profile?current_user=$uniqueId");
