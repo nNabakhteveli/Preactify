@@ -2,7 +2,6 @@
 
 require "../cors.php";
 
-// echo phpinfo();
 $host = "localhost";
 $db = "user_info";
 $username = "root";
@@ -34,3 +33,6 @@ try {
 } catch(PDOException $error) {
     echo $error;
 }
+
+// Relocate user to React app
+header("Location: http://localhost:3000/dashboard");
