@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 $spotify_config = require "./config/config.php";
 require './cors.php';
-
+require './curl.php';
 
 $clientId = $spotify_config['client_id'];
 $clientSecret = $spotify_config['client_secret'];
@@ -41,12 +41,13 @@ if($_SERVER['QUERY_STRING'] != "") {
 
             session_start();
             $_SESSION["access_token"] = $response["access_token"];
-            
-            setcookie("access_token", $response["access_token"]);
-            setcookie("token_type", $response["token_type"]);
-            setcookie("expires_in", $response["expires_in"]);
-            setcookie("refresh_token", $response["refresh_token"]);
 
+            
+            setcookie("access_token", $response["access_token"], time() + 31536000, "/");
+            setcookie("token_type", $response["token_type"], time() + 31536000, "/");
+            setcookie("expires_in", $response["expires_in"], time() + 31536000, "/");
+            setcookie("refresh_token", $response["refresh_token"], time() + 31536000, "/");
+            
             $a = $response["token_type"];
             $b = $response["access_token"];
             
@@ -57,5 +58,5 @@ if($_SERVER['QUERY_STRING'] != "") {
         echo "Something failed during authorization...";
     }
 } else {
-    echo "Login success";
+    // echo "Login success";
 }

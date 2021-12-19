@@ -11,7 +11,9 @@ const Playlists = ({ arr, isLoaded }) => {
         return(
             <div className="playlistsDiv">
                 <ul>
-                    { arr.map((item) => <a key={nanoid()} href={item.external_urls.spotify}><li> <img src={item.images[0].url} width={40} /> {item.name}</li></a>)}
+                    { arr.map((item) => <a target="_blank" key={nanoid()} href={item.external_urls.spotify}>
+                        <li> <img src={item.images[0].url} width={40} /> {item.name}</li>
+                    </a>)}
                 </ul>
             </div>
         );
@@ -45,20 +47,7 @@ export default function Profile() {
         } catch(error) { 
             console.log(error) 
         }
-        handleFetch();
     }, []);
-    
-    function handleFetch() {
-        if(localStorage.getItem("access_token") !== null) {
-            axios.get(playlistsEndpoint, {
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("access_token"),
-                }
-            }).then(res => {
-                setData(res.data);
-            }).catch(error => console.log(error));
-        }   
-    }
     
     return(
         <div>

@@ -1,11 +1,22 @@
 .playlistsDiv {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+    color: white;
     border: 1px solid black;
     width: max-content;
-    overflow-y: auto;
+    overflow: auto;
+
+    /* overflow-y: auto; */
     float: left;
     height: min-content;
     margin-top: 50px;
 }
+
 li {
-    padding: 5px;
+    list-style-type: none;
+    padding: 10px;
+}
+
+li:hover {
+    color: black;
 }
