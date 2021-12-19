@@ -18,7 +18,7 @@ $currentUserId = $_COOKIE['uniqueID'];
 
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
-    $query = $pdo->query("SELECT * from `users` WHERE `id` = $currentUserId");
+    $query = $pdo->query("SELECT * from `users` WHERE id = '$currentUserId'");
     $data = $query->fetchAll();
     
     echo json_encode($data);

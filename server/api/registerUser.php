@@ -17,7 +17,7 @@ $options = array(
 
 $postedUsername = $_POST['username'];
 $postedPassword = $_POST['password'];
-$uniqueId = uniqid("id_", true);
+$uniqueId = uniqid("id_");
 $currentDate = date("Y/m/d");
 
 try {
