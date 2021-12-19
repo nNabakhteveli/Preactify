@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import parseUrl from 'parse-url';
 
 
-
 const SpotifyClient = () => {
   return(
     <div className="loginPopup login-step-one">
@@ -41,14 +40,18 @@ const TwoStepLogin = ({ isLoggedinWithSpotify }) => {
 
 function App() {
   const [hasQueryString, setHasQueryString] = useState(false);
+  const [fullSignup, setFullSignup] = useState(false);
 
   
   useEffect(() => {
     const currentPageUrl = document.baseURI, parsedCurrentPageUrl = parseUrl(currentPageUrl);
     if(parsedCurrentPageUrl.search !== "") setHasQueryString(true);
+
+    // if(localStorage.getItem("isLoggedIn") !== "false") setFullSignup(true);
   }, []);
 
-   return <TwoStepLogin isLoggedinWithSpotify={hasQueryString} />
+  
+  return <TwoStepLogin isLoggedinWithSpotify={hasQueryString} />
 }
 
 export default App;

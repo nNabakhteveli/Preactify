@@ -2,6 +2,7 @@
 
 require "../cors.php";
 
+
 $host = "localhost";
 $db = "user_info";
 $username = "root";
@@ -13,11 +14,13 @@ $options = array(
     PDO::ATTR_EMULATE_PREPARES => false
 );
 
+$currentUserId = $_COOKIE['uniqueID'];
+
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
-    $query = $pdo->query("SELECT * from `accountDetails`");
+    $query = $pdo->query("SELECT * from `users` WHERE `id` = $currentUserId");
     $data = $query->fetchAll();
-
+    
     echo json_encode($data);
 
 } catch(PDOException $error) {

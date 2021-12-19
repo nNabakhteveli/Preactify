@@ -8,8 +8,15 @@ require './cors.php';
 $clientId = $spotify_config['client_id'];
 $clientSecret = $spotify_config['client_secret'];
 $redirectURL = 'http://localhost/preactify/server/index.php';
+$SCOPES = implode("%20", array(
+    'user-read-currently-playing',
+    'user-follow-modify',
+    'user-follow-read',
+    'playlist-read-private'
+));
 
-$url = "https://accounts.spotify.com/authorize?client_id=$clientId&response_type=code&redirect_uri=$redirectURL";
+$url = "https://accounts.spotify.com/authorize?client_id=$clientId&response_type=code&redirect_uri=$redirectURL&scope=$SCOPES&show_dialog=true";
+
 
 if($_SERVER['REQUEST_URI'] == '/preactify/server/index.php' && !isset($_COOKIE["access_token"])) header("Location: $url");
 
@@ -31,6 +38,9 @@ if($_SERVER['QUERY_STRING'] != "") {
                 
             $response = json_decode($res->getBody("access_token"), true);
             $responseStatusCode = $res->getStatusCode();
+
+            session_start();
+            $_SESSION["access_token"] = $response["access_token"];
             
             setcookie("access_token", $response["access_token"]);
             setcookie("token_type", $response["token_type"]);

@@ -2,6 +2,7 @@
 
 require "../cors.php";
 
+
 $host = "localhost";
 $db = "user_info";
 $username = "root";
@@ -16,17 +17,23 @@ $options = array(
 
 $postedUsername = $_POST['username'];
 $postedPassword = $_POST['password'];
+$uniqueId = uniqid("id_", true);
 $currentDate = date("Y/m/d");
 
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
-    $query = "INSERT INTO `accountDetails` (`username`, `password`, `createDate`) VALUES (:uname, :pass, :createDate)";
+    $query = "INSERT INTO `users` (`id`, `username`, `password`, `createDate`, `access_token`) VALUES (:id, :uname, :pass, :createDate, :access_token)";
     $statement = $pdo->prepare($query);
     $statement->bindValue(':uname', $postedUsername);
     $statement->bindValue(':pass', $postedPassword);
     $statement->bindValue(':createDate', $currentDate);
+    $statement->bindValue(":id", $uniqueId);
+    session_start();
+    $statement->bindValue(":access_token", $_SESSION["access_token"]);
 
     $executed = $statement->execute();
+
+    setcookie('uniqueID', $uniqueId);
 
     if($executed) echo "success!";
 
@@ -34,5 +41,5 @@ try {
     echo $error;
 }
 
-// Relocate user to React app
+// Relocate user to React app after successful login
 header("Location: http://localhost:3000/dashboard");

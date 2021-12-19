@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2'
+import axios from 'axios';
   
 
 const Toast = Swal.mixin({
@@ -18,6 +19,6 @@ title: 'Signed in successfully'
 
 export default function Dashboard() {
     return(
-        <h1>Hey</h1>
+      <h1>Hi</h1>  
     );
 }
