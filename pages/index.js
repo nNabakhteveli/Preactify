@@ -15,18 +15,20 @@ const SpotifyClient = () => {
 const AccountSetup = () => {
   return(
     <div className="loginPopup login-step-two">
-      <label>Finish setting up your account </label>
-      <form action='http://localhost/preactify/server/lib/registerUser.php' method='POST'>
-        <div className="form-group">
-          <input name='username' type="text" className="form-control" id="nameInput" placeholder="Enter Username" required />
-        </div>
+      <div className="second-step-form">
+        <label>Finish setting up your account </label>
+        <form action='http://localhost/preactify/server/lib/registerUser.php' method='POST'>
+          <div className="form-group">
+            <input name='username' type="text" className="form-control" id="nameInput" placeholder="Enter Username" required />
+          </div>
 
-        <div className="form-group">
-          <input name='password' type="password" className="form-control" id="passwordInput" placeholder="Enter Password" required />
-        </div>
+          <div className="form-group">
+            <input name='password' type="password" className="form-control" id="passwordInput" placeholder="Enter Password" required />
+          </div>
 
-        <button type='submit' className="btn btn-success">Proceed</button>
-      </form>
+          <button type='submit' className="btn btn-success">Proceed</button>
+        </form>
+      </div>
     </div>
   )
 }

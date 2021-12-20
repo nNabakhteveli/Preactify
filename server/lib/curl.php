@@ -17,7 +17,7 @@ function writePlaylistData(
 
     try {
         $pdo = new PDO($dsn, $username, $password, $options);
-        $query = "INSERT INTO `playlists` (`userid`, `playlist_name`, `playlist_external_url`, `playlist_image_url`, `owner_display_name`, `owner_account_external_url`, `owner_account_url_api`, `tracks_api_url`, `playlist_api_url`) VALUES (:userid, :playlist_name, :playlist_external_url, :playlist_image_url, :owner_display_name, :owner_account_external_url, :owner_account_url_api, :tracks_api_url, :playlist_api_url)";
+        $query = "INSERT IGNORE INTO `playlists` (`userid`, `playlist_name`, `playlist_external_url`, `playlist_image_url`, `owner_display_name`, `owner_account_external_url`, `owner_account_url_api`, `tracks_api_url`, `playlist_api_url`) VALUES (:userid, :playlist_name, :playlist_external_url, :playlist_image_url, :owner_display_name, :owner_account_external_url, :owner_account_url_api, :tracks_api_url, :playlist_api_url)";
 
         $statement = $pdo->prepare($query);
         $statement->bindValue(":userid", $uniqueId);
