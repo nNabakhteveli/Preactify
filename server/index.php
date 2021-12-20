@@ -41,6 +41,7 @@ if($_SERVER['QUERY_STRING'] != "") {
 
             session_start();
             $_SESSION["access_token"] = $response["access_token"];
+            $_SESSION["token_type"] = $response["token_type"];
 
             
             setcookie("access_token", $response["access_token"], time() + 31536000, "/");
@@ -48,10 +49,6 @@ if($_SERVER['QUERY_STRING'] != "") {
             setcookie("expires_in", $response["expires_in"], time() + 31536000, "/");
             setcookie("refresh_token", $response["refresh_token"], time() + 31536000, "/");
             
-            $a = $response["token_type"];
-            $b = $response["access_token"];
-            
-            setcookie('tokenToFetch', "$a $b"); 
 
             $uniqueId = uniqid("id_");
             $_SESSION['uniqueID'] = $uniqueId;
@@ -64,3 +61,4 @@ if($_SERVER['QUERY_STRING'] != "") {
 } else {
     echo "Login success";
 }
+
