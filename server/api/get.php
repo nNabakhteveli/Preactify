@@ -1,24 +1,13 @@
 <?php
 
-declare(strict_types=1);
+// This file is main source of information for Front-End
 
 require "../cors.php";
+require "../lib/DBInfo.php";
 
 header('Content-Type: application/json');
 
-$host = "localhost";
-$db = "user_info";
-$username = "root";
-$password = "root";
-$dsn = "mysql:dbname=$db;host=$host";
-
-$options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false
-);
-
 $currentUserId = $_COOKIE['uniqueID'];
-
 
 try {
     $pdo = new PDO($dsn, $username, $password);
@@ -28,10 +17,12 @@ try {
     $query = $pdo->query("SELECT * FROM `playlists`;");
     $playlistsData = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode(array(
+    echo json_encode(
+        array(
         'userData' => $userData,
         'playlistsData' => $playlistsData
-    ));
+        )
+    );
 
 } catch(PDOException $error) {
     echo $error;

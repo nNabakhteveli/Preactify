@@ -4,7 +4,6 @@ import parseUrl from 'parse-url';
 import { nanoid } from 'nanoid';
 
 
-
 const UserProfile = ({ userData }) => {
     return(
         <div className='profileInfo'>   
@@ -25,9 +24,11 @@ const Playlists = ({ arr, isLoaded }) => {
                 <label>List of your playlists:</label>
                 <div>
                     <ul>
-                        { arr.map((item) => <a target="_blank" key={nanoid()} href={item.playlist_external_url}>
-                            <li> <img src={item.playlist_image_url} width={40} /> {item.playlist_name}</li>
-                        </a>)}
+                        { arr.map((item) => 
+                            <a target="_blank" key={nanoid()} href={item.playlist_external_url}>
+                                <li> <img src={item.playlist_image_url} width={40} /> {item.playlist_name}</li>
+                            </a>
+                        )}
                     </ul>
                 </div>
             </div>
@@ -54,8 +55,6 @@ export default function Profile() {
                 if(i.id === currentUserId) {
                     setCurrentUser(i);
                     setToken(i.access_token);
-                    localStorage.setItem("current_user_id", i.id);
-                    localStorage.setItem("access_token", i.access_token);
                 }
             }
         } catch(error) { 

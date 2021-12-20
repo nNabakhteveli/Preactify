@@ -1,7 +1,7 @@
 <?php
 
-// require "../cors.php";
 require "./DBInfo.php";
+require '../loginCheck.php';
 
 
 $postedUsername = $_POST['username'];
@@ -33,7 +33,7 @@ $decodedAPCallResponse = json_decode($response, true);
 
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
-    $query = "INSERT INTO `users` (`id`, `username`, `password`, `createDate`, `access_token`, `spotify_disp_name`, `spotify_url`, `followers`, `spotify_id`, `profile_image_url`) VALUES (:id, :uname, :pass, :createDate, :access_token, :spotify_disp_name, :spotify_url, :followers, :spotify_id, :profile_image_url)";
+    $query = "INSERT IGNORE INTO `users` (`id`, `username`, `password`, `createDate`, `access_token`, `spotify_disp_name`, `spotify_url`, `followers`, `spotify_id`, `profile_image_url`) VALUES (:id, :uname, :pass, :createDate, :access_token, :spotify_disp_name, :spotify_url, :followers, :spotify_id, :profile_image_url)";
     $statement = $pdo->prepare($query);
     $statement->bindValue(':uname', $postedUsername);
     $statement->bindValue(':pass', $postedPassword);

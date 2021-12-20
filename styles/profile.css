@@ -11,12 +11,10 @@
 li {
     list-style-type: none;
     padding: 10px;
+    transition: 0.3s;
 }
 
-li:hover {
-    color: black;
-}
-
+li:hover { color: black; }
 
 .profileInfo {
     display: flex;
@@ -27,14 +25,8 @@ li:hover {
     top: 30%;
 }
 
-.profile-image {
-    border-radius: 500px;
-}
+.profile-image { border-radius: 500px; }
 
-.username {
-    font-size: 2rem;
-}
+.username { font-size: 2rem; }
 
-.numberOfFollowers {
-    margin: 0 auto;
-}
+.numberOfFollowers { margin: 0 auto; }

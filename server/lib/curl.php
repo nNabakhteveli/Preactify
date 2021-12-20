@@ -5,8 +5,7 @@
 function writePlaylistData(
     $uniqueId, $playlist_name, $playlist_external_url, $playlist_image_url, $owner_display_name, 
     $owner_account_external_url, $owner_account_url_api, 
-    $tracks_api_url, $playlist_api_url
-    ) {
+    $tracks_api_url, $playlist_api_url) {
 
     require "./DBInfo.php";
 
@@ -26,7 +25,7 @@ function writePlaylistData(
         $statement->bindValue(':owner_account_url_api', $owner_account_url_api);
         $statement->bindValue(':tracks_api_url', $tracks_api_url);
         $statement->bindValue(':playlist_api_url', $playlist_api_url);
-    
+
         $executed = $statement->execute();
     
         if($executed) echo "success!";
@@ -36,9 +35,10 @@ function writePlaylistData(
     }
 }
 
+
 /*
-* $access_token parameter takes in session variable value, firstly fetched token from index.php
-* $uniqueId is also taken from index.php's session variables, that represents currently logged in user
+* $access_token parameter takes in session variable value, firstly fetched access token from index.php
+* $uniqueId also takes session variables from index.php, that represents currently logged in user
 */
 
 function getPlaylistData($access_token, $uniqueId) {
@@ -78,4 +78,3 @@ getPlaylistData("Bearer ".$_SESSION["access_token"], $_SESSION['uniqueID']);
 
 // After getPlaylistData() is done, user will be redirected to it's profile page
 header("Location: http://localhost:3000/?spotify_login_success=true");
-
