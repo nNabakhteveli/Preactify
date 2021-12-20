@@ -21,7 +21,7 @@ Create database:
   `alter table DemoTable ADD UNIQUE INDEX(userid, playlist_external_url, playlist_image_url, owner_account_url_api);`
 
 
- ### P.S username/password login has only one function for now - to not show other people's data.
+ ### P.S username/password login has only one function for now - to not show other registered people's data.
 
 
 ## Getting Started
