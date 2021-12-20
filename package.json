@@ -2,6 +2,7 @@
   "name": "preactify",
   "private": true,
   "scripts": {
+    "launch": "cd server && composer install && cd .. && npm i && npm run dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
