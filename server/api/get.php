@@ -18,12 +18,19 @@ $options = array(
 
 $currentUserId = $_COOKIE['uniqueID'];
 
+
 try {
     $pdo = new PDO($dsn, $username, $password);
     $query = $pdo->query("SELECT * FROM `users`;");
-    $data = $query->fetchAll();
+    $userData = $query->fetchAll();
 
-    echo json_encode($data);
+    $query = $pdo->query("SELECT * FROM `playlists`;");
+    $playlistsData = $query->fetchAll();
+
+    echo json_encode(array(
+        'userData' => $userData,
+        'playlistsData' => $playlistsData
+    ));
 
 } catch(PDOException $error) {
     echo $error;

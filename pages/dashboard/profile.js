@@ -3,6 +3,7 @@ import axios from 'axios';
 import parseUrl from 'parse-url';
 import { nanoid } from 'nanoid';
 
+
 const Playlists = ({ arr, isLoaded }) => {
     if(Object.keys(isLoaded).length !== 0) {
         for(const i of arr) {
@@ -11,14 +12,14 @@ const Playlists = ({ arr, isLoaded }) => {
         return(
             <div className="playlistsDiv">
                 <ul>
-                    { arr.map((item) => <a target="_blank" key={nanoid()} href={item.external_urls.spotify}>
-                        <li> <img src={item.images[0].url} width={40} /> {item.name}</li>
+                    { arr.map((item) => <a target="_blank" key={nanoid()} href={item.playlist_external_url}>
+                        <li> <img src={item.playlist_image_url} width={40} /> {item.playlist_name}</li>
                     </a>)}
                 </ul>
             </div>
         );
     } else {
-        return <h1>Waiting..</h1>;
+        return <h1>Waiting...</h1>;
     }
 }
   
@@ -36,7 +37,7 @@ export default function Profile() {
         // Get user's Access token
         try {
             const getUserData = await axios.get('http://localhost/preactify/server/api/get.php');
-            for(const i of getUserData.data) {
+            for(const i of getUserData.data.userData) {
                 if(i.id === currentUserId) {
                     setCurrentUser(i);
                     setToken(i.access_token);
@@ -51,20 +52,14 @@ export default function Profile() {
     }, []);
     
     function handleFetch() {
-        if(localStorage.getItem("access_token") !== null) {
-            axios.get("https://api.spotify.com/v1/playlists/4DJyqthJ47GlTZPV2nStJF/tracks", {
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("access_token"),
-                }
-            }).then(res => {
-                console.log(res);
-            }).catch(error => console.log(error));
-        }   
+        axios.get("http://localhost/preactify/server/api/get.php").then(res => {
+            setData(res.data.playlistsData);
+        }).catch(error => console.log(error));
     }
     
     return(
         <div>
-            {/* <Playlists isLoaded={data} arr={data.items} /> */} <h1>zd</h1>
+            <Playlists arr={data} isLoaded={data} />
         </div>
     );
 }

@@ -1,7 +1,5 @@
 <?php
 
-// require "../cors.php";
-
 
 function writePlaylistData(
     $uniqueId, $playlist_name, $playlist_external_url, $playlist_image_url, $owner_display_name, 
