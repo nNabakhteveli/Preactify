@@ -16,7 +16,7 @@ const AccountSetup = () => {
   return(
     <div className="loginPopup login-step-two">
       <label>Finish setting up your account </label>
-      <form action='http://localhost/preactify/server/api/registerUser.php' method='POST'>
+      <form action='http://localhost/preactify/server/lib/registerUser.php' method='POST'>
         <div className="form-group">
           <input name='username' type="text" className="form-control" id="nameInput" placeholder="Enter Username" required />
         </div>

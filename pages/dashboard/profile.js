@@ -47,11 +47,24 @@ export default function Profile() {
         } catch(error) { 
             console.log(error) 
         }
+        handleFetch();
     }, []);
+    
+    function handleFetch() {
+        if(localStorage.getItem("access_token") !== null) {
+            axios.get("https://api.spotify.com/v1/playlists/4DJyqthJ47GlTZPV2nStJF/tracks", {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("access_token"),
+                }
+            }).then(res => {
+                console.log(res);
+            }).catch(error => console.log(error));
+        }   
+    }
     
     return(
         <div>
-            <Playlists isLoaded={data} arr={data.items} />
+            {/* <Playlists isLoaded={data} arr={data.items} /> */} <h1>zd</h1>
         </div>
     );
 }

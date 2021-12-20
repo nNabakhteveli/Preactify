@@ -1,24 +1,19 @@
 <?php
 
-require "../cors.php";
-
-
-$host = "localhost";
-$db = "user_info";
-$username = "root";
-$password = "root";
-$dsn = "mysql:dbname=$db;host=$host";
+// require "../cors.php";
+require "./DBInfo.php";
 
 $options = array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_EMULATE_PREPARES => false
 );
 
-
 $postedUsername = $_POST['username'];
 $postedPassword = $_POST['password'];
-$uniqueId = uniqid("id_");
 $currentDate = date("Y/m/d");
+
+session_start();
+$uniqueId = $_SESSION['uniqueID'];
 
 try {
     $pdo = new PDO($dsn, $username, $password, $options);

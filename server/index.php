@@ -1,9 +1,9 @@
 <?php
 
 require 'vendor/autoload.php';
-$spotify_config = require "./config/config.php";
 require './cors.php';
-require './curl.php';
+$spotify_config = require "./config/config.php";
+
 
 $clientId = $spotify_config['client_id'];
 $clientSecret = $spotify_config['client_secret'];
@@ -52,11 +52,15 @@ if($_SERVER['QUERY_STRING'] != "") {
             $b = $response["access_token"];
             
             setcookie('tokenToFetch', "$a $b"); 
-        } 
-        header("Location: http://localhost:3000/?spotify_login_success=true");
+
+            $uniqueId = uniqid("id_");
+            $_SESSION['uniqueID'] = $uniqueId;
+
+        }
+        header("Location: http://localhost/preactify/server/lib/curl.php");
     } else {
         echo "Something failed during authorization...";
     }
 } else {
-    // echo "Login success";
+    echo "Login success";
 }
