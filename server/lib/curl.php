@@ -71,6 +71,7 @@ function getPlaylistData($access_token, $uniqueId) {
 
 session_start();
 
-getPlaylistData("Bearer ".$_SESSION["access_token"], $uniqueId);
+getPlaylistData("Bearer ".$_SESSION["access_token"], $_SESSION['uniqueID']);
 
 header("Location: http://localhost:3000/?spotify_login_success=true");
+

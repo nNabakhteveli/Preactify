@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import parseUrl from 'parse-url';
+import Swal from 'sweetalert2';
 
 
 const SpotifyClient = () => {
@@ -13,6 +14,20 @@ const SpotifyClient = () => {
 }
 
 const AccountSetup = () => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3500,
+    timerProgressBar: false,
+  });
+  
+  Toast.fire(
+    {
+      icon: 'success',
+      title: 'Signed in successfully'
+    });
+
   return(
     <div className="loginPopup login-step-two">
       <div className="second-step-form">
@@ -39,6 +54,7 @@ const TwoStepLogin = ({ isLoggedinWithSpotify }) => {
   else 
     return <AccountSetup />
 }
+
 
 function App() {
   const [hasQueryString, setHasQueryString] = useState(false);

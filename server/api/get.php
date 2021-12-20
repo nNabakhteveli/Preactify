@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 require "../cors.php";
 
 header('Content-Type: application/json');
-
 
 $host = "localhost";
 $db = "user_info";
@@ -22,10 +23,10 @@ $currentUserId = $_COOKIE['uniqueID'];
 try {
     $pdo = new PDO($dsn, $username, $password);
     $query = $pdo->query("SELECT * FROM `users`;");
-    $userData = $query->fetchAll();
+    $userData = $query->fetchAll(PDO::FETCH_ASSOC);
 
     $query = $pdo->query("SELECT * FROM `playlists`;");
-    $playlistsData = $query->fetchAll();
+    $playlistsData = $query->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(array(
         'userData' => $userData,
@@ -35,4 +36,3 @@ try {
 } catch(PDOException $error) {
     echo $error;
 }
-
