@@ -4,7 +4,7 @@ Full-Stack app made with React/Next, PHP and Spotify Web API
 
 ## Create essential MySQL database and tables for testing
 
-Create database:
+Create database in MySQL bash:
   1. `CREATE DATABASE user_info;`
 
   2. Create users table: 
