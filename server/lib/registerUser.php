@@ -4,11 +4,6 @@
 require "./DBInfo.php";
 
 
-$options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false
-);
-
 $postedUsername = $_POST['username'];
 $postedPassword = $_POST['password'];
 $currentDate = date("Y/m/d");
