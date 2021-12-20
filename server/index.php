@@ -5,9 +5,12 @@ require './cors.php';
 $spotify_config = require "./config/config.php";
 
 
+// Essential queries for HTTP requests
 $clientId = $spotify_config['client_id'];
 $clientSecret = $spotify_config['client_secret'];
-$redirectURL = 'http://localhost/preactify/server/index.php';
+$redirectURL = 'http://localhost/preactify/server/index.php'; // After successful login, user gets redirected back to our local app
+
+// Things that we want to get about our user
 $SCOPES = implode("%20", array(
     'user-read-currently-playing',
     'user-follow-modify',
@@ -37,7 +40,6 @@ if($_SERVER['QUERY_STRING'] != "") {
             ]);
                 
             $response = json_decode($res->getBody("access_token"), true);
-            $responseStatusCode = $res->getStatusCode();
 
             session_start();
             $_SESSION["access_token"] = $response["access_token"];
@@ -50,15 +52,20 @@ if($_SERVER['QUERY_STRING'] != "") {
             setcookie("refresh_token", $response["refresh_token"], time() + 31536000, "/");
             
 
-            $uniqueId = uniqid("id_");
+            $uniqueId = uniqid("id_"); // Built in PHP function to generate random ID's to identify different users
+
             $_SESSION['uniqueID'] = $uniqueId;
 
         }
+        /*  After successful Spotify authorization, user gets redirected to /curl.php route to
+        *   finish setting up the account
+        */ 
         header("Location: http://localhost/preactify/server/lib/curl.php");
     } else {
         echo "Something failed during authorization...";
     }
 } else {
+    // If user is already logged in, the only output will be this
     echo "Login success";
 }
 

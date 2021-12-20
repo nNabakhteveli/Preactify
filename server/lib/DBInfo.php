@@ -1,5 +1,7 @@
 <?php
 
+// MySQL database props, being used globally in the whole app
+
 $host = "localhost";
 $db = "user_info";
 $username = "root";
