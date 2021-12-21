@@ -52,3 +52,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   4. Make some columns UNIQUE to prevent data duplication:
 
   `ALTER TABLE playlists ADD UNIQUE INDEX(userid, playlist_external_url, playlist_image_url, owner_account_url_api);`
+
+
+
+#
+
+
+
+# Request-Response flow in the app
+![alt text](https://github.com/nNabakhteveli/Preactify/blob/main/request-response-flow.png)
